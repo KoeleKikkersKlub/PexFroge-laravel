@@ -17,4 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+package-lock.json
 vite.config.js.timestamp-1695817053790-a1693d4a605f9.mjs
