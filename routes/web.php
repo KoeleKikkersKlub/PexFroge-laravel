@@ -20,6 +20,11 @@ Route::get('/', function () {
 Route::controller(AuthenticationController::class)->group(function()
 {
     Route::get('/register', 'register')->name('register');
+    Route::post('/tryregister', 'attemptRegistration')->name('attemptRegistration');
     Route::get('/login', 'login')->name('login');
+    Route::post('/check-email', 'checkEmail')->name('checkEmail');
+    Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/homepage', 'homepage')->name('homepage');
 })
 ?>

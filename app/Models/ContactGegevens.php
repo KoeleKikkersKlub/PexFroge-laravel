@@ -16,5 +16,5 @@ class ContactGegevens extends Model
         'address',
         'city',
         'zip',
-    ]
+    ];
 }
