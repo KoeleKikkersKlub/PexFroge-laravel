@@ -19,12 +19,19 @@ Route::get('/', function () {
 
 Route::controller(AuthenticationController::class)->group(function()
 {
-    Route::get('/register', function() {
-        return view('register');
-    })->name('register');
-    
     Route::get('/login', function() {
-        return view('login');
+        return view('auth.login');
     })->name('login');
+
+    Route::get('/stageoverzicht', function() {
+        return view('stageoverzicht');
+    })->name('stageoverzicht');
+
+    Route::post('/check-email', 'checkEmail')->name('checkEmail');
+    Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/homepage', 'homepage')->name('homepage');
 })
+
+
 ?>

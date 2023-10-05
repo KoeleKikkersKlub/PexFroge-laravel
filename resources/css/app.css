@@ -1,9 +1,6 @@
 html,body{
     width:100vw;
 }
-body{
-    background-color: #E7F1FF;
-}
 
 .fuck {
         position:relative;
@@ -52,11 +49,11 @@ height: 200px;
     align-self:left;
 }
 
-.textfield-email {
+.textfield-email, .textfield-password {
     width:100%;
     text-align: center;
     height: 25px;
-    margin-bottom: 80px;
+    /* margin-bottom: 80px; */
 }
 
 .doorgaan {
@@ -79,4 +76,29 @@ height: 200px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+.shadow{
+    box-shadow: 10px 5px 5px black;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.spinner {
+    display: none;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
