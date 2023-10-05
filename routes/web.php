@@ -30,6 +30,11 @@ Route::controller(AuthenticationController::class)->group(function()
     Route::get('/stageoverzicht', function() {
         return view('stageoverzicht');
     })->name('stageoverzicht');
+    Route::post('/tryregister', 'attemptRegistration')->name('attemptRegistration');
+    Route::post('/check-email', 'checkEmail')->name('checkEmail');
+    Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/homepage', 'homepage')->name('homepage');
 })
 
 
