@@ -15,54 +15,43 @@ class AuthenticationController extends Controller
     }
     
     public function attemptLogin(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|min:8',
+    ]);
 
-        if (Auth::attempt($credentials))
-        {
-            $request->session()->regenerate();
-            return redirect()->route('homepage')->withSuccess('You have been logged in!');
-        }
-        return back()->withErrors([
-            'email' => 'Your credentials do not match our records.'
-        ])->onlyInput('email');
-    }
-
-    //     $user = User::where('email', $credentials['email'])->first();
-
-    //     if ($user && !is_null($user->password)) {
-    //         return response()->json(['isAuthenticated' => true]);
-    //     } else {
-    //         return response()->json(['isAuthenticated' => false]);
-    //     }
-    // }
-
-    public function register()
-    {
-        $title = 'Register';
-        return view('auth.register', compact('title'));
-    }
-    
-    public function attemptRegistration(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed'
-        ]);
-
-        User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
-
-        $credentials = $request->only('email', 'password');
-        Auth::attempt($credentials);
+    if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
-        return redirect()->route('login')->withSuccess('You have been logged in!');
+        return redirect()->route('homepage')->withSuccess('You have been logged in!');
     }
+
+    // Check if the user exists based on email
+    $user = User::where('email', $credentials['email'])->first();
+
+    if (!$user) {
+        if ($request->input('password') !== $request->input('confirm_password')) {
+            return back()->withErrors([
+                'password' => 'Passwords do not match.',
+            ])->onlyInput('email');
+        }
+
+        $user = new User([
+            'email' => $credentials['email'],
+            'password' => Hash::make($credentials['password']),
+        ]);
+        $user->save();
+
+        Auth::login($user);
+
+        $request->session()->regenerate();
+        return redirect()->route('homepage')->withSuccess('You have been registered and logged in!');
+    }
+
+    return back()->withErrors([
+        'email' => 'Your credentials do not match our records.',
+    ])->onlyInput('email');
+}
 
     public function loggedIn()
     {

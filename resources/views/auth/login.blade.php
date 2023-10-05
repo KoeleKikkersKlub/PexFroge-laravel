@@ -1,80 +1,124 @@
-@extends('app')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name') }} - Login</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous"
-          rel="stylesheet">
-</head>
-<body>
-<div class="row justify-content-center mt-5">
-    <div class="col-md-8">
+@extends("app") 
 
-        <div class="card">
-            <div class="card-header">Login</div>
-            <div class="card-body">
-                <form action="{{ route('attemptLogin') }}" method="post">
-                    @csrf
-                    <div class="mb-3 row">
-    <label for="email" class="col-md-4 col-form-label text-md-end text-start">Email Address</label>
-    <div class="col-md-6">
-        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" oninput="checkEmailExists()">
-        @if ($errors->has('email'))
-            <span class="text-danger">{{ $errors->first('email') }}</span>
-        @endif
-    </div>
-</div>
-<div class="mb-3 row" id="password-field" style="display: none;">
-    <label for="password" class="col-md-4 col-form-label text-md-end text-start">Password</label>
-    <div class="col-md-6">
-        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
-        @if ($errors->has('password'))
-            <span class="text-danger">{{ $errors->first('password') }}</span>
-        @endif
-    </div>
-</div>
-<div id="email-error" class="mb-3 row" style="display: none;">
-    <div class="col-md-6 offset-md-4">
-        <span class="text-danger">Email not found in the database.</span>
-    </div>
-</div>
+@section("extra-head")
+@vite('resources/css/login.css')
+@endsection
 
-                    <div class="mb-3 row">
-                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Login">
-                    </div>
-                    
-                </form>
+@section("content")
+
+<div class="fuck shadow">
+    <div class="triangle-element"> </div>
+    <p class="login" id="login"> Login </p>
+    <!-- this is placeholder for debugging -->
+    @if(Auth::user())
+    {{Auth::user()->email}}
+    @endif
+     <!--  -->
+    <form action="{{ route('attemptLogin') }}" method="post" id="login-form">
+        @csrf
+        <div class="form-container">
+            <label for="textfield-email">Email:</label>
+            <input type="email" class="form-control @error('email') is-invalid @enderror textfield-email" id="email" name="email" value="{{ old('email') }}" oninput="checkEmailExists()">
+            <div id="password-field" class="form-container" style="display: none">
+                <label for="textfield-password">Password:</label>
+                <input type="password" class="form-control @error('password') is-invalid @enderror textfield-password" id="password" name="password">
+            </div>
+            <div class="form-container" id="confirm-password-field" style="display: none;">
+                <label for="textfield-confirm-password">Confirm Password:</label>
+                <input type="password" class="form-control textfield-confirm-password" id="confirm-password" name="confirm_password">
             </div>
         </div>
-    </div>    
+        <div class="spacer"></div>
+        <div class="btn-doorgaan-container">
+            <div class="spinner-wrapper">
+                <div class="spinner" id="spinner"></div>
+                <button type="submit" id="submit-button" class="doorgaan shadow">Doorgaan</button>
+            </div>
+        </div>
+    </form>
 </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-    function checkEmailExists() {
-        const email = document.getElementById('email').value;
-        const passwordField = document.getElementById('password-field');
+<script>
+    // function to switch between register and login layouts depending on user's input
+function togglePasswordFields(loginMode) {
+    const passwordField = document.getElementById('password-field');
+    const confirmPasswordField = document.getElementById('confirm-password-field');
+    const login = document.getElementById('login');
 
+    if (loginMode === 'login') {
+        passwordField.style.display = 'block';
+        confirmPasswordField.style.display = 'none';
+        login.innerHTML = 'Login';
+    } else if (loginMode === 'register') {
+        passwordField.style.display = 'block';
+        confirmPasswordField.style.display = 'block';
+        login.innerHTML = 'Register';
+    }
+}
+
+// Validate the confirm password field if registering
+function validateForm() {
+    const loginMode = (document.getElementById('login').innerHTML === 'Login');
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (!loginMode && password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+    }
+
+    return true;
+}
+ // it does exactly what the function name is, runs thru the db for the email and disables input during this.
+ // also toggles login/register fields depending on if it found an email or not
+function checkEmailExists() {
+    clearTimeout(timeoutId);
+    const login = document.getElementById('login');
+    const email = document.getElementById('email').value;
+    const passwordField = document.getElementById('password-field');
+    const confirmPasswordField = document.getElementById('confirm-password-field');
+    const spinner = document.getElementById('spinner');
+    const submitButton = document.getElementById('submit-button');
+    const loginForm = document.getElementById('login-form');
+
+    passwordField.classList.add('disabled');
+    confirmPasswordField.classList.add('disabled');
+    submitButton.classList.add('disabled');
+    spinner.style.display = 'block';
+
+    timeoutId = setTimeout(function () {
         axios.post('{{ route('checkEmail') }}', { email: email })
             .then(function (response) {
                 if (response.data.exists) {
-                    // Email exists, show the password field
-                    passwordField.style.display = 'block';
+                    togglePasswordFields('login');
                 } else {
-                    // Email does not exist, show an error message
-                    passwordField.style.display = 'none';
+                    togglePasswordFields('register');
                 }
             })
             .catch(function (error) {
                 console.error(error);
+            })
+            .finally(function () {
+                passwordField.classList.remove('disabled');
+                confirmPasswordField.classList.remove('disabled');
+                submitButton.classList.remove('disabled');
+                spinner.style.display = 'none';
             });
-    }
+    }, 2000); // 2000 milliseconds (2 seconds)
+}
+
+// Attach the togglePasswordFields function to the email input's oninput event
+document.getElementById('email').addEventListener('input', function () {
+    checkEmailExists();
+    togglePasswordFields('login'); // During email check, display the login layout.
+});
+
+// Attach the validateForm function to the form's onsubmit event
+document.querySelector('form').addEventListener('submit', validateForm);
+
+let timeoutId; // Variable to store the timeout ID
+
 </script>
-</body>
-</html>
+
+
+@endsection
