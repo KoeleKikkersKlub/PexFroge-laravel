@@ -1,9 +1,6 @@
 html,body{
     width:100vw;
 }
-body{
-    background-color: #E7F1FF;
-}
 
 .fuck {
         position:relative;
@@ -79,4 +76,8 @@ height: 200px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+.shadow{
+    box-shadow: 10px 5px 5px black;
 }

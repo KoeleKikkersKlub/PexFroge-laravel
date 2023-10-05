@@ -26,5 +26,11 @@ Route::controller(AuthenticationController::class)->group(function()
     Route::get('/login', function() {
         return view('login');
     })->name('login');
+
+    Route::get('/stageoverzicht', function() {
+        return view('stageoverzicht');
+    })->name('stageoverzicht');
 })
+
+
 ?>
