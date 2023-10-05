@@ -9,6 +9,7 @@
 <div class="fuck shadow">
     <div class="triangle-element"> </div>
     <p class="login" id="login"> Login </p>
+    <hr />
     <!-- this is placeholder for debugging -->
     @if(Auth::user())
     {{Auth::user()->email}}
@@ -17,17 +18,18 @@
     <form action="{{ route('attemptLogin') }}" method="post" id="login-form">
         @csrf
         <div class="form-container">
-            <label for="textfield-email">Email:</label>
-            <input type="email" class="form-control @error('email') is-invalid @enderror textfield-email" id="email" name="email" value="{{ old('email') }}" oninput="checkEmailExists()">
-            <div id="password-field" class="form-container" style="display: none">
-                <label for="textfield-password">Password:</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror textfield-password" id="password" name="password">
-            </div>
-            <div class="form-container" id="confirm-password-field" style="display: none;">
-                <label for="textfield-confirm-password">Confirm Password:</label>
-                <input type="password" class="form-control textfield-confirm-password" id="confirm-password" name="confirm_password">
-            </div>
-        </div>
+    <label for="textfield-email"><i class="fas fa-envelope"></i> Email:</label>
+    <input type="email" class="form-control @error('email') is-invalid @enderror textfield-email shadow" id="email" name="email" value="{{ old('email') }}" oninput="checkEmailExists()">
+</div>
+<div id="password-field" class="form-container" style="display: none">
+    <label for="textfield-password"><i class="fas fa-lock"></i> Password:</label>
+    <input type="password" class="form-control @error('password') is-invalid @enderror textfield-password shadow" id="password" name="password">
+</div>
+<div class="form-container" id="confirm-password-field" style="display: none;">
+    <label for="textfield-confirm-password"><i class="fas fa-lock"></i> Confirm Password:</label>
+    <input type="password" class="form-control textfield-password shadow" id="confirm-password" name="confirm_password">
+</div>
+
         <div class="spacer"></div>
         <div class="btn-doorgaan-container">
             <div class="spinner-wrapper">
@@ -104,7 +106,7 @@ function checkEmailExists() {
                 submitButton.classList.remove('disabled');
                 spinner.style.display = 'none';
             });
-    }, 2000); // 2000 milliseconds (2 seconds)
+    }, 1000); // 2000 milliseconds (2 seconds)
 }
 
 // Attach the togglePasswordFields function to the email input's oninput event

@@ -2,6 +2,10 @@ html,body{
     width:100vw;
 }
 
+*{
+    font-family: 'Montserrat';font-size: 22px;
+}
+
 .fuck {
         position:relative;
         display: flex;
@@ -18,7 +22,7 @@ html,body{
 p {
 margin-top: 10px; 
 text-align: center;
-height: 200px;
+/* height: 200px; */
 }
 
 .login {
@@ -52,7 +56,7 @@ height: 200px;
 .textfield-email, .textfield-password {
     width:100%;
     text-align: center;
-    height: 25px;
+    height: 50px;
     /* margin-bottom: 80px; */
 }
 
