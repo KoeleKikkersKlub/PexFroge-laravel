@@ -7,11 +7,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/7f7a28d73a.js" crossorigin="anonymous"></script>
     @vite('resources/js/app.js')
+
+  
   </head>
   <body>
-    <div class="w3-container">
-      <p>aefgvrsbrfddsevb</p>
-    </div>
+
+  <div class="triangle-element"> </div>
+
+  <div class="topnav">
+  <a href="#news">News</a>
+  </div>
+
+  <div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+
+    <ul class="menu__box">
+    
+      <li><a class="menu__item" href="#">Home</a></li>
+			<li><a class="menu__item" href="#">Chat</a></li>
+			<li><a class="menu__item" href="#">Bedrijven lijst</a></li>
+    </ul>
+  </div>
+
     @yield("content")
     </body>
 </html>
