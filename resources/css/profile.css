@@ -6,17 +6,50 @@
 .profile-details p {
     margin: 0;
     height: 50px;
+    padding: 5px;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns, equal width */
+    gap: 20px; /* Gap between the two divs */
 }
 
 .profile {
-    width: 30vh;
-    margin-top: 5vh;
+    width: 30vw;
+    margin-top: 15vh;
+    margin-left: 5vw;
+    box-shadow: 10px 5px 5px black; /* Apply shadow to profile div */
 }
 
-.profile .profile-image {
-    width: inherit;
+.pdf-document {
+    margin-top: 15vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile .profile-image img {
+    width: 50%;
+    height: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile .profile-image h2 {
+    text-align: center;
 }
 
 .profile-details h2 {
     text-align: center;
+}
+
+.profile-details a {
+    text-decoration: none;
+}
+
+.profile-details p {
+    margin: 0;
+    padding: 5px;
 }
