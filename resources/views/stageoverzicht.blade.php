@@ -6,7 +6,11 @@
 
 @section("content")
 
-<div class="kanker">
+<div class="kader">
+    <div class="kader1"></div>
+    <div class="kader1"></div>
+    <div class="kader1"></div>
+    <div class="kader1"></div>
 </div>
 
 @endsection
