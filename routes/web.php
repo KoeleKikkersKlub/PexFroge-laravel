@@ -23,12 +23,17 @@ Route::controller(AuthenticationController::class)->group(function()
         return view('auth.login');
     })->name('login');
 
+    Route::get('/register', function() {
+        return view('auth.register');
+    })->name('register');
+
     Route::get('/stageoverzicht', function() {
         return view('stageoverzicht');
     })->name('stageoverzicht');
 
     Route::post('/check-email', 'checkEmail')->name('checkEmail');
     Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
+    Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
     Route::get('/logout', 'logout')->name('logout');
     Route::get('/homepage', 'homepage')->name('homepage');
 })
