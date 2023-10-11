@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +38,12 @@ Route::controller(AuthenticationController::class)->group(function()
     Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
     Route::get('/logout', 'logout')->name('logout');
     Route::get('/homepage', 'homepage')->name('homepage');
-})
+});
 
+
+Route::controller(ProfileController::class)->group(function()
+{
+    Route::get('/profile', 'home')->name('profile');
+});
 
 ?>

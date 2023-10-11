@@ -1,0 +1,22 @@
+.shadow {
+    box-shadow: 10px 5px 5px black;
+}
+
+ /* dont touch this because it'll break <p> tag */
+.profile-details p {
+    margin: 0;
+    height: 50px;
+}
+
+.profile {
+    width: 30vh;
+    margin-top: 5vh;
+}
+
+.profile .profile-image {
+    width: inherit;
+}
+
+.profile-details h2 {
+    text-align: center;
+}
