@@ -15,7 +15,12 @@
   <div class="triangle-element"> </div>
 
   <div class="topnav">
-  <a href="#news">News</a>
+
+  <div style="background-image: url('ImageLocation');background-size: cover; height:480px; padding-top:80px;">
+  <img src="alfa-college" style="height:150px">
+
+</div>
+
   </div>
 
   <div class="hamburger-menu">
@@ -26,9 +31,9 @@
 
     <ul class="menu__box">
     
-      <li><a class="menu__item" href="#">Home</a></li>
-			<li><a class="menu__item" href="#">Chat</a></li>
-			<li><a class="menu__item" href="#">Bedrijven lijst</a></li>
+      <li><a class="menu__item" href="">Home</a></li>
+			<li><a class="menu__item" href="">Chat</a></li>
+			<li><a class="menu__item" href="">Bedrijven lijst</a></li>
     </ul>
   </div>
 
