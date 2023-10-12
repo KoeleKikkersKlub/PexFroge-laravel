@@ -1,0 +1,66 @@
+.shadow {
+    box-shadow: 10px 5px 5px black;
+}
+
+.top-shadow {
+    box-sizing: border-box;
+    box-shadow: 0px -16px 15px -6px lightgray;
+}
+
+ /* dont touch this because it'll break <p> tag */
+.profile-details p {
+    margin: 0;
+    height: 50px;
+    padding: 5px;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.profile {
+    width: 30vw;
+    margin-top: 15vh;
+    margin-left: 5vw;
+}
+
+.profile .profile-image img {
+    width: 50%;
+    height: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile .profile-image h2 {
+    text-align: center;
+}
+
+.profile-details h2 {
+    text-align: center;
+}
+
+.profile-details a {
+    text-decoration: none;
+}
+
+.profile-details p {
+    margin: 0;
+    padding: 5px;
+}
+
+.pdf-document {
+    margin-top: 15vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: 5vw;
+
+}
+
+.pdf iframe {
+    width: 50vw;
+    height: 70vh;
+}

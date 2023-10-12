@@ -35,7 +35,7 @@ class AuthenticationController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed'
         ]);
-        
+
         $existingUser = User::where('email', $request->email)->first();
 
         if($existingUser)
@@ -74,6 +74,17 @@ class AuthenticationController extends Controller
         if (Auth::check()) {
             return view('homepage');
         }
-        return redirect()->route('login')->withErrors(['email' => 'Please login to access the dashboard.']);
+        return redirect()->route('login')
+            ->withErrors([
+            'email' => 'Please login to access the dashboard.',
+        ])->onlyInput('email');
+    }
+    public function checkEmail(Request $request)
+    {
+    $email = $request->input('email');
+    $userExists = User::where('email', $email)->exists();
+
+    return response()->json(['exists' => $userExists]);
     }
 }
+

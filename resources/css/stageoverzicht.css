@@ -2,12 +2,25 @@
     box-shadow: 10px 5px 5px black;
 }
 
-.kanker {
-        align-items: center;
-        margin: 0 auto;
-        width: 60%;
-        border: 2px solid black;
-        margin-top: 100px;
-        height: 30vw;
-        background-color: white;
+.kader {
+    box-sizing: border-box;
+    min-height: 30vw;
+    height: fit-content;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    border: 2px solid black;
+    margin-top: 100px;
+    background-color: white;
+    box-shadow: 1px 1px 2px black;
+    padding: 25px;
 }
+
+.kader1 {
+    border: 1px solid black;
+    align-items: center;
+    margin: 25px auto;
+    width: 95%;
+    height: 6vw;
+}
+ 
