@@ -13,3 +13,16 @@ form {
     width: 22%;
     border-bottom: 2px solid blue;
 }
+
+.triangle-element {
+	display: inline-block;
+	position: absolute;
+	left:0;
+	top:0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background: red;
+	clip-path: polygon(0px 0px, 20vw 0px, 0px 10vw);
+	transform: rotate(0);
+}

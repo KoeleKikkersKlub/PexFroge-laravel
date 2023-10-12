@@ -12,6 +12,7 @@
     @yield("extra-head")
   </head>
   <body>
+<<<<<<< HEAD:resources/views/app.blade.php
 
   <div class="triangle-element"> </div>
 
@@ -38,6 +39,8 @@
     </ul>
   </div>
 
+=======
+>>>>>>> master:resources/views/app_old.blade.php.old
     @yield("content")
     </body>
 </html>

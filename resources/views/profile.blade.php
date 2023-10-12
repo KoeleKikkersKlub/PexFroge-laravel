@@ -1,4 +1,5 @@
-@extends("app")
+@extends("layout.app")
+@include('layout.nav')
 
 @section("extra-head")
 @vite('resources/css/profile.css')

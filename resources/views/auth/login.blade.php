@@ -1,4 +1,4 @@
-@extends("app") 
+@extends("layout.app") 
 
 @section("extra-head")
 @vite('resources/css/login.css')
