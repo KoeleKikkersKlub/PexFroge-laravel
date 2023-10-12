@@ -56,9 +56,5 @@ Route::controller(AuthenticationController::class)->group(function()
 
     Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
     Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
-    Route::get('/logout', 'logout')->name('logout');
-    Route::get('/homepage', 'homepage')->name('homepage');
-    Route::get('/register', 'register')->name('register');
-    Route::get('/login', 'login')->name('login');
 });
 ?>
