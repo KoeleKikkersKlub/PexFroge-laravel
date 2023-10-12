@@ -32,11 +32,7 @@ body{
         background-color: white;
       }
 
-p {
-    margin-top: 10px; 
-    text-align: center;
-    height: 200px;
-}
+
 
 .login {
     margin-top: 0px;

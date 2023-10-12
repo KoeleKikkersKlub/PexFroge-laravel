@@ -9,20 +9,53 @@
 
  /* dont touch this because it'll break <p> tag */
 .profile-details p {
-    margin: 0;
-    height: 50px;
-    padding: 5px;
+    text-align: center;
 }
 
-body {
-    display: grid;
+.cards * { box-sizing: border-box; min-width: 0; min-height: 0; }
+
+.cards {
+    box-sizing: content-box;
+    display: inline-flex;
+    flex-direction: row;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    flex-grow: 1;
+    /* min-height: fit-content; */
+}
+
+.kaart {
+    width: 40vw;
+    display:flex;
+    margin-top: 15vh;
+    flex-direction: column;
+    height: 80vh;
+    flex-grow: 0;
+}
+
+.kaart *{
+    min-width: 0;
+    min-height: 0;
+    font-size-adjust: 1;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.flex-spacer{
+    flex-grow: 1;
+
+}
+
+.pdf {
+    margin-right: 5vw;
 }
 
 .profile {
-    width: 30vw;
-    margin-top: 15vh;
     margin-left: 5vw;
 }
 
@@ -51,16 +84,3 @@ body {
     padding: 5px;
 }
 
-.pdf-document {
-    margin-top: 15vh;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-right: 5vw;
-
-}
-
-.pdf iframe {
-    width: 50vw;
-    height: 70vh;
-}

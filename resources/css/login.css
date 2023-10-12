@@ -14,6 +14,12 @@ form {
     border-bottom: 2px solid blue;
 }
 
+p {
+    margin-top: 10px; 
+    text-align: center;
+    height: 200px;
+}
+
 .triangle-element {
 	display: inline-block;
 	position: absolute;
