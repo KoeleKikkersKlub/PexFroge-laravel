@@ -8,14 +8,14 @@
 
 <div class="fuck shadow">
     <div class="triangle-element"> </div>
-    <p class="login" id="login"> Login </p>
+    <p class="login" id="login"> Register </p>
     <hr />
     <!-- this is placeholder for debugging -->
     @if(Auth::user())
     {{Auth::user()->email}}
     @endif
      <!--  -->
-    <form action="{{ route('attemptLogin') }}" method="post" id="login-form">
+    <form action="{{ route('attemptRegister') }}" method="post" id="login-form">
         @csrf
         <div class="form-container">
     <label for="textfield-email"><i class="fas fa-envelope"></i> Email:</label>
@@ -31,7 +31,14 @@
             <span class="text-danger">{{ $message }}</span>
         @enderror
 </div>
-        <div class="spacer"></div>
+<div class="form-container">
+        <label for="password_confirmation"><i class="fas fa-lock"></i> Confirm Password:</label>
+        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror textfield-password shadow" id="password_confirmation" name="password_confirmation">
+        @error('password_confirmation')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+    <div class="spacer"></div>
         <div class="btn-doorgaan-container">
                 <button type="submit" id="submit-button" class="doorgaan shadow">Doorgaan</button>
             </div>
