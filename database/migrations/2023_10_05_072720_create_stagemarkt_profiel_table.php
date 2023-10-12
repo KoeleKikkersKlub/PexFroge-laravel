@@ -11,27 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('stagemarkt_profiel', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cg_id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
-            $table->boolean('activated')->default(0);
-            $table->rememberToken();
+            $table->string('kvk_naam');
+            $table->string('kvk_nummer');
+            $table->string('kvk_vestigingsnummer');
+            $table->string('bedrijfsindeling');
+            $table->string('bedrijfsgrootte');
+            $table->string('capaciteit');
             $table->timestamps();
         });
     }
-
-    // email > if no password > register process
-    // email > if password > login
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('stagemarkt_profiel');
     }
 };

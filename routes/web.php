@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,17 +16,49 @@ use App\Http\Controllers\AuthenticationController;
 */
 
 Route::get('/', function () {
-    return view('app');
+    if (auth()->check()) {
+        return redirect()->route('homepage');
+    } else {
+        return view('auth.login');
+    }
 });
+
+// requires login to access
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/stageoverzicht', function() {
+        return view('stageoverzicht');
+    })->name('stageoverzicht');
+
+    Route::controller(ProfileController::class)->group(function()
+    {
+        Route::get('/profile/{user}/', 'home')->name('profile');
+    });
+    Route::controller(AuthenticationController::class)->group(function()
+    {
+        Route::get('/homepage', 'homepage')->name('homepage');
+        Route::get('/logout', 'logout')->name('logout');
+    });
+});
+
+// does not require login to access
 
 Route::controller(AuthenticationController::class)->group(function()
 {
-    Route::get('/register', function() {
-        return view('register');
-    })->name('register');
-    
     Route::get('/login', function() {
-        return view('login');
+        return view('auth.login');
     })->name('login');
-})
+
+    Route::get('/register', function() {
+        return view('auth.register');
+    })->name('register');
+
+    Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
+    Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/homepage', 'homepage')->name('homepage');
+    Route::get('/register', 'register')->name('register');
+    Route::get('/login', 'login')->name('login');
+});
 ?>
