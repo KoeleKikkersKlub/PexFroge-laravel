@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function home(Request $request)
+    public function home(Request $request, $id)
     {
-        $user = Auth::user();
+        $user = User::find($id);
 
         if ($user) {
             return view('profile', ['user' => $user]);

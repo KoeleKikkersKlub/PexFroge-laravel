@@ -43,7 +43,7 @@ Route::controller(AuthenticationController::class)->group(function()
 
 Route::controller(ProfileController::class)->group(function()
 {
-    Route::get('/profile', 'home')->name('profile');
+    Route::get('/profile/{user}/', 'home')->name('profile');
 });
 
 ?>
