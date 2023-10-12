@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -13,7 +11,28 @@
     @vite('resources/js/app.js')
     @yield("extra-head")
   </head>
-     <body> 
-        @yield("content")
+  <body>
+
+  <div class="triangle-element"> </div>
+
+  <div class="topnav">
+  <a href="#news">News</a>
+  </div>
+
+  <div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+
+    <ul class="menu__box">
+    
+      <li><a class="menu__item" href="#">Home</a></li>
+			<li><a class="menu__item" href="#">Chat</a></li>
+			<li><a class="menu__item" href="#">Bedrijven lijst</a></li>
+    </ul>
+  </div>
+
+    @yield("content")
     </body>
 </html>
