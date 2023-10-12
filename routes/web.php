@@ -38,9 +38,5 @@ Route::controller(AuthenticationController::class)->group(function()
     Route::get('/homepage', 'homepage')->name('homepage');
     Route::get('/register', 'register')->name('register');
     Route::get('/login', 'login')->name('login');
-
-    //COMPANY
-    Route::get('/company/register', 'companyRegister')->name('company.register.show');
-    Route::get('company/register/contact', 'companyRegisterContact')->name('company.register.contact.show');
 })
 ?>
