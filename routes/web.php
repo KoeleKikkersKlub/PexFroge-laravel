@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrajectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,15 +27,18 @@ Route::get('/', function () {
 // requires login to access
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::get('/stageoverzicht', function() {
-        return view('stageoverzicht');
-    })->name('stageoverzicht');
+    Route::controller(TrajectController::class)->group(function()
+    {
+        Route::get('/stageoverzicht', function() {
+            return view('stageoverzicht');
+        })->name('stageoverzicht');
+    });
 
     Route::controller(ProfileController::class)->group(function()
     {
         Route::get('/profile/{user}/', 'home')->name('profile');
     });
+
     Route::controller(AuthenticationController::class)->group(function()
     {
         Route::get('/homepage', 'homepage')->name('homepage');
