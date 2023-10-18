@@ -1,5 +1,4 @@
 @extends("layout.app")
-
 @section("extra-head")
 @vite('resources/css/stageoverzicht.css')
 @endsection
