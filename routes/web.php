@@ -18,6 +18,9 @@ use App\Http\Controllers\TrajectController;
 */
 
 // requires login to access
+Route::get('/', function () {
+    return redirect('homepage');
+});
 
 Route::middleware(['auth'])->group(function () {
     
