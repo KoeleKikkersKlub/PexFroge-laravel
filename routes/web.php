@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrajectController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,22 +17,17 @@ use App\Http\Controllers\TrajectController;
 |
 */
 
-Route::get('/', function () {
-    if (auth()->check()) {
-        return redirect()->route('homepage');
-    } else {
-        return view('auth.login');
-    }
-});
-
 // requires login to access
 
 Route::middleware(['auth'])->group(function () {
-    Route::controller(TrajectController::class)->group(function()
+    
+    Route::get('/stageoverzicht', function() {
+        return view('stageoverzicht');
+    })->name('stageoverzicht');
+
+    Route::controller(TrajectController::Class)->group(function()
     {
-        Route::get('/stageoverzicht', function() {
-            return view('stageoverzicht');
-        })->name('stageoverzicht');
+        Route::get('/homepage', 'TrajectData')->name('homepage');
     });
 
     Route::controller(ProfileController::class)->group(function()
@@ -41,7 +37,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::controller(AuthenticationController::class)->group(function()
     {
-        Route::get('/homepage', 'homepage')->name('homepage');
         Route::get('/logout', 'logout')->name('logout');
     });
 });

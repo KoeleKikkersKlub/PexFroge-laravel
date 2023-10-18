@@ -69,16 +69,6 @@ class AuthenticationController extends Controller
         return redirect()->route('login')->with('success', 'You have been logged out!');
     }
 
-    public function homepage()
-    {
-        if (Auth::check()) {
-            return view('homepage');
-        }
-        return redirect()->route('login')
-            ->withErrors([
-            'email' => 'Please login to access the dashboard.',
-        ])->onlyInput('email');
-    }
     public function checkEmail(Request $request)
     {
     $email = $request->input('email');

@@ -11,19 +11,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Traject extends Model
 {
+    protected $table = 'traject';
     use HasFactory;
-    public function Student() :HasOne
+    public function student(): HasOne
     {
-        return $this->hasOne(Student::class);
-        }
-
-    public function StageBedrijf() : HasMany
-    {
-        return $this->hasMany(Bedrijf::class);
+        return $this->hasOne(Student::class, 'user_id', 'id');
     }
-
-    public function Docent() : HasMany
+    
+    public function stageBedrijf(): HasMany
     {
-        return $this->hasMany(Docent::class);
+        return $this->hasMany(Bedrijf::class, 'traject_id', 'id');
     }
+    
+    public function docent(): HasMany
+    {
+        return $this->hasMany(Docent::class, 'user_id', 'id');
+    }
+    
 }
