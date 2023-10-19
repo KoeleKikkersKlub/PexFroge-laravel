@@ -9,7 +9,7 @@
 <div class="overview">
     <div class="data-container">
     @foreach($trajects as $traject)
-            <div class="data">
+            <div class="data shadow">
                     <h2>Stage {{ $loop->iteration }}</h2>
                     <p>{{ $traject->bedrijf_id }}</p>
                     <p>{{ $traject->created_at }}</p>
