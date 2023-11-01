@@ -10,11 +10,6 @@
     <div class="triangle-element"> </div>
     <p class="login" id="login"> Login </p>
     <hr />
-    <!-- this is placeholder for debugging -->
-    @if(Auth::user())
-    {{Auth::user()->email}}
-    @endif
-     <!--  -->
     <form action="{{ route('attemptLogin') }}" method="post" id="login-form">
         @csrf
         <div class="form-container">
