@@ -39,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
     {
         Route::get('/homepage', 'homepage')->name('homepage');
         Route::get('/logout', 'logout')->name('logout');
+
+        Route::get('/company/homepage', function (){
+            return view('company.homepage');
+        })->name('company.homepage');
     });
 });
 
@@ -56,5 +60,14 @@ Route::controller(AuthenticationController::class)->group(function()
 
     Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
     Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
+
+    //Companies:
+
+    Route::get('/company/register', function (){
+        return view('auth.company.company_register');
+    })->name('company.register');
+
+    Route::post('company/tryRegisterCompany', 'attempCompanyRegister')->name('company.attemptRegister');
+    Route::get('company/createProfile', 'createStagemarktProfile')->name('company.createProfile');
 });
 ?>

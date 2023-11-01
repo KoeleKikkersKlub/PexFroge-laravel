@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BedrijfUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +32,10 @@ class AuthenticationController extends Controller
 
     public function attemptRegister(Request $request)
     {
+//        dd($request);
+
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|unique',
             'password' => 'required|min:8|confirmed'
         ]);
 
@@ -49,10 +52,22 @@ class AuthenticationController extends Controller
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
+
+//        $bedrijfUser = BedrijfUser::where('user_id', Auth::id());
+//
+//        if(!is_null($bedrijfUser)){
+//            $this->createStagemarktProfile();
+//        }else{
+//            return route('company.createProfile');
+//        }
+
         return redirect()->route('homepage')
         ->withSuccess('You were logged in!');
     }
+    public function createStagemarktProfile()
+    {
 
+    }
     public function loggedIn()
     {
         if (Auth::check()) {
