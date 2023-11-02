@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app' )
 @vite('resources/js/nav.js')
 
 
@@ -18,7 +18,7 @@
   
     <li><a class="menu__item" href="{{url('homepage')}}">Home</a></li>
           <li><a class="menu__item" href="#">Chat</a></li>
-          <li><a class="menu__item" href="{{url('stageoverzicht')}}w">Bedrijven lijst</a></li>
+          <li><a class="menu__item" href="{{url('stageoverzicht')}}">Bedrijven lijst</a></li>
           <li><a class="menu__item" href="{{url('logout')}}">Logout</a></li>
 
   </ul>
