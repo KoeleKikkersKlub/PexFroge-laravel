@@ -28,20 +28,20 @@ class ProfileController extends Controller
 
     public function edit(Request $request, int $id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::find($id);
 
-        ContactGegevens::where('id', $user->cg_id)
-            ->first()
-            ->save([$request->all(), $user->cg_id]);
+        $contactGegevens = ContactGegevens::find($user->cg_id);
 
-        return to_route('profile', $id);
-    }
+        $contactGegevens->update($request->all());
+
+    return redirect()->route('profile', $id);
+}
+
 
     public function editView(): View
     {
         $user = auth()->user();
         $cg = ContactGegevens::where('id', $user->cg_id)->first();
-
         return view('profile.edit')->with('info', $cg);
     }
 }
