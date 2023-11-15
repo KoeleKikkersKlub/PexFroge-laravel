@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ProfileController::class)->group(function()
     {
         Route::get('/profile/{user}/', 'home')->name('profile');
+        Route::get('/profile/{user}/edit', 'editView')->name('profile.edit.view');
+        Route::post('/profile/{id}/tryEdit', 'edit')->name('profile.edit');
     });
     Route::controller(AuthenticationController::class)->group(function()
     {
@@ -69,5 +71,6 @@ Route::controller(AuthenticationController::class)->group(function()
 
     Route::post('company/tryRegisterCompany', 'attempCompanyRegister')->name('company.attemptRegister');
     Route::get('company/createProfile', 'createStagemarktProfile')->name('company.createProfile');
+    Route::get('company/create', 'createCompanyProfile')->name('company.createBedrijf');
 });
 ?>

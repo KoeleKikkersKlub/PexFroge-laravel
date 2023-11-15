@@ -17,6 +17,7 @@
         <!--  -->
         <form action="{{ route('attemptRegister') }}" method="post" id="login-form">
             @csrf
+            <input type="hidden" name="company" value="1">
             <div class="form-container">
                 <label for="textfield-email"><i class="fas fa-envelope"></i> Email:</label>
                 <input type="email" class="form-control @error('email') is-invalid @enderror textfield-email shadow" id="email" name="email" value="{{ old('email') }}" oninput="checkEmailExists()">

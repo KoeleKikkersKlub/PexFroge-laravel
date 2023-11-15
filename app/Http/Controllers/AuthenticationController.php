@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\BedrijfUser;
+use App\Models\ContactGegevens;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class AuthenticationController extends Controller
 {
@@ -32,10 +34,9 @@ class AuthenticationController extends Controller
 
     public function attemptRegister(Request $request)
     {
-//        dd($request);
 
         $credentials = $request->validate([
-            'email' => 'required|email|unique',
+            'email' => 'required|email',
             'password' => 'required|min:8|confirmed'
         ]);
 
@@ -44,29 +45,31 @@ class AuthenticationController extends Controller
         if($existingUser)
         return back()->withErrors(['email' => 'Email address already in use.'])->withInput();
 
-        User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        $cg = ContactGegevens::create();
+
+        $user = new User();
+        $user->cg_id = $cg->id;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
 
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
 
-//        $bedrijfUser = BedrijfUser::where('user_id', Auth::id());
-//
-//        if(!is_null($bedrijfUser)){
-//            $this->createStagemarktProfile();
-//        }else{
-//            return route('company.createProfile');
-//        }
+        if(isset($request->company)){
+            $this->createCompanyProfileView();
+        }
+
+        $profileController = new ProfileController();
+        $profileController->editView();
 
         return redirect()->route('homepage')
         ->withSuccess('You were logged in!');
     }
     public function createStagemarktProfile()
     {
-
+        dd('create stagemarkt profile');
     }
     public function loggedIn()
     {
@@ -100,6 +103,16 @@ class AuthenticationController extends Controller
     $userExists = User::where('email', $email)->exists();
 
     return response()->json(['exists' => $userExists]);
+    }
+
+    public function createCompanyProfileView(): View
+    {
+        return view('company.create');
+    }
+
+    public function createCompanyProfile()
+    {
+
     }
 }
 
