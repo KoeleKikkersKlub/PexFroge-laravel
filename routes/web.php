@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrajectController;
+use App\Http\Controllers\ImportController;
+
 
 
 /*
@@ -62,4 +64,8 @@ Route::controller(AuthenticationController::class)->group(function()
 
 Route::get('/create-traject', [TrajectController::class, 'createTrajectForm'])->name('create.traject.form');
 Route::post('/store-traject', [TrajectController::class, 'storeTraject'])->name('store.traject');
+
+
+Route::get('/import', [ImportController::class, 'showForm'])->name('import.form');
+Route::post('/import', [ImportController::class, 'import'])->name('import');
 ?>
