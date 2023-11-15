@@ -59,4 +59,7 @@ Route::controller(AuthenticationController::class)->group(function()
     Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
     Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
 });
+
+Route::get('/create-traject', [TrajectController::class, 'createTrajectForm'])->name('create.traject.form');
+Route::post('/store-traject', [TrajectController::class, 'storeTraject'])->name('store.traject');
 ?>

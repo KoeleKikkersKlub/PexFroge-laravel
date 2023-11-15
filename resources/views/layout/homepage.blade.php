@@ -23,6 +23,17 @@
                     </p>
             </div>
 @endforeach
+<form action="{{ route('store.traject') }}" method="POST">
+            @csrf
+
+            <label for="progress">Progress:</label>
+            <input type="text" name="progress" id="progress" required>
+
+            <input type="hidden" name="docent_id" value="1">
+            <input type="hidden" name="bedrijf_id" value="1">
+
+            <button type="submit">Create Traject</button>
+        </form>
     </div>  
 </div>
 @endsection

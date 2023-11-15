@@ -13,6 +13,13 @@ class Traject extends Model
 {
     protected $table = 'traject';
     use HasFactory;
+
+    protected $fillable = [
+        'progress',
+        'bedrijf_id',
+        'docent_id'
+    ];
+
     public function student(): HasOne
     {
         return $this->hasOne(Student::class, 'user_id', 'id');
