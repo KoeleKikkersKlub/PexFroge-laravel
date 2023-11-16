@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrajectController;
+use App\Http\Controllers\ImportController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,29 +19,29 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
+// requires login to access
 Route::get('/', function () {
-    if (auth()->check()) {
-        return redirect()->route('homepage');
-    } else {
-        return view('auth.login');
-    }
+    return redirect('homepage');
 });
 
-// requires login to access
-
 Route::middleware(['auth'])->group(function () {
-
+    
     Route::get('/stageoverzicht', function() {
         return view('stageoverzicht');
     })->name('stageoverzicht');
+
+    Route::controller(TrajectController::Class)->group(function()
+    {
+        Route::get('/homepage', 'TrajectData')->name('homepage');
+    });
 
     Route::controller(ProfileController::class)->group(function()
     {
         Route::get('/profile/{user}/', 'home')->name('profile');
     });
+
     Route::controller(AuthenticationController::class)->group(function()
     {
-        Route::get('/homepage', 'homepage')->name('homepage');
         Route::get('/logout', 'logout')->name('logout');
     });
 });
@@ -57,4 +61,11 @@ Route::controller(AuthenticationController::class)->group(function()
     Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
     Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
 });
+
+Route::get('/create-traject', [TrajectController::class, 'createTrajectForm'])->name('create.traject.form');
+Route::post('/store-traject', [TrajectController::class, 'storeTraject'])->name('store.traject');
+
+
+Route::get('/import', [ImportController::class, 'showForm'])->name('import.form');
+Route::post('/import', [ImportController::class, 'import'])->name('import');
 ?>

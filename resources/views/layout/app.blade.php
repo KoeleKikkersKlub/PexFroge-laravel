@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/7f7a28d73a.js" crossorigin="anonymous"></script>
     @vite('resources/js/app.js')
     @yield("extra-head")
+    <title>{{config('app.name')}} - {{ Str::ucfirst(Route::current()->getName()) }}</title>
   </head>
   <body>
     @yield("content")
