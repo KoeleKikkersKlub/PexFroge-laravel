@@ -11,8 +11,17 @@ class ContactGegevens extends Model
 {
     protected $table = 'contact_gegevens';
     use HasFactory;
+    protected $fillable = [
+        'voornaam',
+        'achternaam',
+        'contactemail',
+        'telefoonnummer',
+        'adres',
+        'plaats',
+        'postcode',
+    ];
 
-    public function user() :BelongsTo 
+    public function user() :BelongsTo
     {
         return $this->belongsTo(User::class);
     }

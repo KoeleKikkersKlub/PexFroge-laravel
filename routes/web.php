@@ -38,11 +38,17 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ProfileController::class)->group(function()
     {
         Route::get('/profile/{user}/', 'home')->name('profile');
+        Route::get('/profile/{user}/edit', 'editView')->name('profile.edit.view');
+        Route::post('/profile/{id}/tryEdit', 'edit')->name('profile.edit');
     });
 
     Route::controller(AuthenticationController::class)->group(function()
     {
         Route::get('/logout', 'logout')->name('logout');
+
+        Route::get('/company/homepage', function (){
+            return view('company.homepage');
+        })->name('company.homepage');
     });
 });
 
@@ -60,6 +66,16 @@ Route::controller(AuthenticationController::class)->group(function()
 
     Route::post('/trylogin', 'attemptLogin')->name('attemptLogin');
     Route::post('/tryregister', 'attemptRegister')->name('attemptRegister');
+
+    //Companies:
+
+    Route::get('/company/register', function (){
+        return view('auth.company.company_register');
+    })->name('company.register');
+
+    Route::post('company/tryRegisterCompany', 'attempCompanyRegister')->name('company.attemptRegister');
+    Route::get('company/createProfile', 'createStagemarktProfile')->name('company.createProfile');
+    Route::get('company/create', 'createCompanyProfile')->name('company.createBedrijf');
 });
 
 Route::get('/create-traject', [TrajectController::class, 'createTrajectForm'])->name('create.traject.form');

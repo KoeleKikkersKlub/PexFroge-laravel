@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function ContactGegevens() :HasOne
     {
-        return $this->hasOne(ContactGegevens::class);
+        return $this->hasOne(ContactGegevens::class, 'cg_id');
         }
 }
