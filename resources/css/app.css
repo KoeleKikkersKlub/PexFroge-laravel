@@ -46,19 +46,15 @@ body{
     width: 350px;
     flex-direction: column;
 }
-.form-container label{
-    align-self:left;
-}
 
 .textfield-email, .textfield-password {
     width:100%;
     text-align: center;
     height: 50px;
-    /* margin-bottom: 80px; */
 }
 
 .doorgaan {
-    border-radius: 5px;
+    border-radius: 0.375rem;
     color: white;
     background-color: #003581;
     padding: 10px;

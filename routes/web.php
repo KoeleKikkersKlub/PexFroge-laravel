@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ProfileController::class)->group(function()
     {
         Route::get('/profile/{user}/', 'home')->name('profile');
-        Route::get('/profile/{user}/edit', 'editView')->name('profile.edit.view');
+        Route::get('/profile/{id}/edit', 'editView')->name('profile.edit.view');
         Route::post('/profile/{id}/tryEdit', 'edit')->name('profile.edit');
     });
     Route::controller(AuthenticationController::class)->group(function()

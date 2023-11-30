@@ -28,9 +28,7 @@ class ProfileController extends Controller
 
     public function edit(Request $request, int $id)
     {
-        $user = User::find($id);
-
-        $contactGegevens = ContactGegevens::find($user->cg_id);
+        $contactGegevens = ContactGegevens::find($id);
 
         $contactGegevens->update($request->all());
 
@@ -38,10 +36,9 @@ class ProfileController extends Controller
 }
 
 
-    public function editView(): View
+    public function editView(int $id): View
     {
-        $user = auth()->user();
-        $cg = ContactGegevens::where('id', $user->cg_id)->first();
-        return view('profile.edit')->with('info', $cg);
+        $cg = ContactGegevens::where('id', $id)->first();
+        return view('profile.edit')->with(['info' => $cg, 'id' => $id]);
     }
 }

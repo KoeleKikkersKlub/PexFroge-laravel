@@ -21,7 +21,7 @@
                         <p><i class="fas fa-map"></i> Plaats: {{ $info->plaats }}</p>
                         <p><i class="fas fa-location-dot"></i> Postcode: {{ $info->postcode }}</p>
                         <p><i class="fas fa-note-sticky"></i> <button type="button" class="button">Upload CV</button></p>
-                       <a href="{{ route('profile.edit.view', auth()->id()) }}"><p><i class="fa-solid fa-pen-to-square"></i>Edit</p></a>
+                       <a href="{{ route('profile.edit.view', $info->id) }}"><p><i class="fa-solid fa-pen-to-square"></i>Edit</p></a>
                     </div>
                 </div>
             </div>
