@@ -16,7 +16,7 @@
                     </div>
                     <div class="profile-details top-shadow">
                         <p> <i class="fas fa-envelope"></i> Email: <a href="mailto:{{ $info->contactemail }}">{{ $info->contactemail }}</a></p>
-                        <p><i class="fas fa-mobile"></i> Telefoon: {{ $info->telefoonnummer }}</p>
+                        <p><i class="fas fa-mobile"></i> Telefoon: {{ $info->telefoon }}</p>
                         <p><i class="fas fa-map-location-dot"></i> Adres: {{ $info->adres }}</p>
                         <p><i class="fas fa-map"></i> Plaats: {{ $info->plaats }}</p>
                         <p><i class="fas fa-location-dot"></i> Postcode: {{ $info->postcode }}</p>
