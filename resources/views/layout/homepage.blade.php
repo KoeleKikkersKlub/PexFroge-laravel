@@ -32,7 +32,7 @@
             <input type="hidden" name="docent_id" value="1">
             <input type="hidden" name="bedrijf_id" value="1">
 
-            <button type="submit">Create Traject</button>
+            <button type="submit" class="btn btn-primary">Create Traject</button>
         </form>
     </div>  
 </div>

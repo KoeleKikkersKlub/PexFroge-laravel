@@ -2,6 +2,7 @@
 @include('layout.nav')
 
 @section("extra-head")
+
     @vite('resources/css/profile.css')
 @endsection
 
