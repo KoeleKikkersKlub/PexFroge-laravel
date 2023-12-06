@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-container col-6 mt-1">
                                 <label for="telefoonnummer"><i class="fa-solid fa-mobile"></i>Telefoon:</label>
-                                <input class="form-control" type="text" name="telefoon" value="{{ $info->telefoonnummer }}">
+                                <input class="form-control" type="text" name="telefoon" value="{{ $info->telefoon }}">
                             </div>
                             <div class="form-container col-6 mt-1">
                                 <label for="adres"><i class="fa-sharp fa-solid fa-map-location-dot"></i>Adres:</label>
