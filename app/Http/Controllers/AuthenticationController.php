@@ -74,7 +74,7 @@ class AuthenticationController extends Controller
     public function loggedIn()
     {
         if (Auth::check()) {
-            return view('homepage');
+            return view('layout.homepage');
         }
         return redirect()->route('login')->withErrors(['email' => 'Please login to access the dashboard.']);
     }
